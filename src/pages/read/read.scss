@@ -1,0 +1,51 @@
+.read {
+  min-height: 100vh;
+  padding: 15rpx;
+
+  .setup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    .nav {
+      height: 50rpx;
+      background-color: #fff;
+    }
+    .join{
+      flex: 1;
+      .btn{
+        float: right;
+        margin-top: 20rpx;
+        color: #fff;
+        font-size: 14rpx;
+        padding: 8rpx 20rpx;
+        border-top-left-radius: 20rpx;
+        border-bottom-left-radius: 20rpx;
+      }
+    }
+    .console {
+      min-height: 100rpx;
+      border-top-left-radius: 10rpx;
+      border-top-right-radius: 10rpx;
+      background-color: #fff;
+    }
+  }
+
+  .title {
+    font-size: 16rpx;
+    font-weight: bold;
+  }
+
+  .content {
+    font-size: 16rpx;
+
+    .text {
+      line-height: 1.5em;
+      text-indent: 1.5em;
+    }
+  }
+}

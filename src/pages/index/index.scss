@@ -1,0 +1,206 @@
+taro-image-core {
+  display: block !important;
+
+  .taro-img__mode-scaletofill {
+    display: block;
+  }
+}
+
+.bg {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+.index {
+  height: 100vh;
+}
+
+.top {
+  .loading {
+    padding: 5rpx;
+    text-align: center;
+  }
+
+  .search {
+    background-color: rgba(255, 255, 255, 0);
+    height: 40rpx;
+    display: flex;
+    align-items: center;
+    padding: 0 10rpx;
+
+    .desc {
+      color: #333;
+      flex: 1;
+      font-size: 14rpx;
+
+      .read-duration {
+        font-weight: bold;
+      }
+    }
+
+    .icon {
+      margin-left: 20rpx;
+    }
+  }
+}
+
+.main {
+  background-image: url("../../../asstes/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top;
+}
+
+
+.block {
+  padding: 0 10rpx
+}
+
+.ad {
+  padding: 8px;
+  border-radius: 5rpx;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+
+  .info {
+    flex: 1;
+    display: flex;
+
+    .image {
+      width: 30rpx;
+      border-radius: 2rpx;
+      overflow: hidden;
+    }
+
+    .intro {
+      padding: 0 8rpx;
+      flex: 1;
+      width: 0;
+      font-size: 12rpx;
+
+      .title {
+        font-weight: bold;
+      }
+
+      .desc {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .btn {
+    border-left: 1rpx solid #eee;
+    padding-left: 8rpx;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.container {
+  .content {
+    background-color: #fff;
+    min-height: 500rpx;
+    margin-top: 10rpx;
+    border-top-left-radius: 6rpx;
+    border-top-right-radius: 6rpx;
+    overflow: hidden;
+    .icon {
+      margin-left: 3rpx;
+      font-weight: bold;
+    }
+    .nav {
+      padding: 15rpx;
+      font-size: 12rpx;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      .menus {
+        flex: 1;
+        display: flex;
+        align-items: center;
+
+        .menu {
+          display: flex;
+          align-items: center;
+          padding-right: 10rpx;
+        }
+
+        .active{
+          font-weight: bold;
+        }
+      }
+
+      .tools {
+        display: flex;
+        align-items: center;
+
+        .tool {
+          display: flex;
+          align-items: center;
+          padding: 0px 6rpx;
+          position: relative;
+
+          &::after {
+            background-color: #eee;
+            content: " ";
+            position: absolute;
+            height: 60%;
+            width: 1rpx;
+            left: 0;
+            top: 20%;
+          }
+
+          &:first-child::after {
+            content: unset;
+          }
+        }
+      }
+    }
+
+    .book {
+      padding: 10rpx 15rpx;
+      display: flex;
+      align-items: center;
+      &:first-child{padding-top: 0;}
+      .info {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        .image {
+          width: 54rpx;
+          border-radius: 4rpx;
+          overflow: hidden;
+        }
+
+        .intro {
+          padding: 0 8rpx;
+          flex: 1;
+          width: 0;
+          font-size: 12rpx;
+          .intro-flex{
+            display: flex;
+            align-items: center;
+            .title{flex: 1;}
+          }
+          .title {
+            font-size: 14rpx;
+            font-weight: bold;
+          }
+          .desc {
+            color: #7f7f7f;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+}

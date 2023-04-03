@@ -1,7 +1,7 @@
 import { Component } from "react";
-import { View, Text } from '@tarojs/components';
+import { View, Text, Slider } from '@tarojs/components';
 import {
-  Sticky,
+  Sticky, Icon, Button
 } from "@nutui/nutui-react-taro";
 import './read.scss'
 
@@ -9,9 +9,43 @@ class Read extends Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      readBg: {backgroundColor: '#d7e3d7'},
-      setupBg: {backgroundColor: '#e4eee5'},
-      joinBg: {backgroundColor: '#2e8a57'},
+      readBg: { backgroundColor: '#d7e3d7' },
+      setupBg: { backgroundColor: '#e4eee5' },
+      setupThemeBg: { backgroundColor: '#2e8a57' },
+      setupThemeColor: { color: '#2e8a57' },
+      theme_index: 0,
+      themes: [
+        {
+          backgroundColor: '#d7e3d7',
+          color: '#2e8a57',
+          consoleColor: '#e4eee5',
+        },
+        {
+          backgroundColor: '#f8eee5',
+          color: '#a87800',
+          consoleColor: '#fbf7f4',
+        },
+        {
+          backgroundColor: '#d5c39f',
+          color: '#8e5b00',
+          consoleColor: '#ccb991',
+        },
+        {
+          backgroundColor: '#e8cba3',
+          color: '#774100',
+          consoleColor: '#d2a679',
+        },
+        {
+          backgroundColor: '#ffe3df',
+          color: '#bc4e50',
+          consoleColor: '#fff1f0',
+        },
+        {
+          backgroundColor: '#f8eee5',
+          color: '#a77900',
+          consoleColor: '#fbf7f4',
+        },
+      ],
       title: "第1章 开局退婚，喜大普奔（新书求支持）",
       content: [
         "中世纪的城堡为了追求防御力，用巨大岩石堆砌而成，窗户很小，采光条件很差。",
@@ -106,23 +140,79 @@ class Read extends Component {
 
   componentDidHide() { }
 
+  setThemes(index){
+    this.setState({
+      theme_index: index,
+    })
+  }
   render() {
     return (
-      <View className="read" style={this.state.readBg}>
-        <View className="setup">
-            <View className="nav" style={this.state.setupBg}></View>
-            <View className="join"><View className="btn" style={this.state.joinBg}>加入书库</View></View>
-            <View className="console" style={this.state.setupBg}></View>
+      <View className="read" style={{backgroundColor:this.state.themes[this.state.theme_index].backgroundColor}}>
+        <View className="setup base">
+          <View className="nav" style={{backgroundColor:this.state.themes[this.state.theme_index].consoleColor}}>
+            <View className="back">
+              <Icon color={this.state.themes[this.state.theme_index].color} name="rect-left"></Icon>
+            </View>
+            <Icon color={this.state.themes[this.state.theme_index].color} name="more-x"></Icon>
+          </View>
+          <View className="join"><View className="btn" style={{backgroundColor:this.state.themes[this.state.theme_index].color}}>加入书库</View></View>
+          <View className="console" style={{backgroundColor:this.state.themes[this.state.theme_index].consoleColor}}>
+            <View className="chapter">
+              <View style={{color:this.state.themes[this.state.theme_index].color}}>上一章</View>
+              <View className="progress">
+                <Slider activeColor={this.state.setupThemeBg.backgroundColor} backgroundColor={this.state.setupThemeBg.backgroundColor} step={1} value={100} min={1} max={100} />
+              </View>
+              <View style={{color:this.state.themes[this.state.theme_index].color}}>下一章</View>
+            </View>
+            <View className="btns">
+              <View className="btn">
+                <View><Icon className="icon" color={this.state.themes[this.state.theme_index].color} name="order"></Icon></View>
+                <Text style={{color:this.state.themes[this.state.theme_index].color}}>目录</Text>
+              </View>
+              <View className="btn">
+                <View><Icon className="icon nut-icon-am-breathe  nut-icon-am-infinite" color={this.state.themes[this.state.theme_index].color} name="fabulous"></Icon></View>
+                <Text style={{color:this.state.themes[this.state.theme_index].color}}>点赞</Text>
+              </View>
+              <View className="btn">
+                <View><Icon className="icon" color={this.state.themes[this.state.theme_index].color} name="eye"></Icon></View>
+                <Text style={{color:this.state.themes[this.state.theme_index].color}}>夜间</Text>
+              </View>
+              <View className="btn">
+                <View><Icon className="icon" color={this.state.themes[this.state.theme_index].color} name="setting"></Icon></View>
+                <Text style={{color:this.state.themes[this.state.theme_index].color}}>设置</Text>
+              </View>
+            </View>
+          </View>
         </View>
-        <Sticky> 
-          <View className="title" style={this.state.readBg}>{this.state.title}</View>
+        <View className="setup senior">
+          <View className="console" style={{backgroundColor:this.state.themes[this.state.theme_index].consoleColor}}>
+            <View className="chapter">
+              <View style={{color:this.state.themes[this.state.theme_index].color}}>字号</View>
+              <View className="typeface">
+                <Button style={{backgroundColor:this.state.themes[this.state.theme_index].consoleColor}} color={this.state.themes[this.state.theme_index].color} plain type="primary">A-</Button> <Text className="fontsize" style={{color:this.state.themes[this.state.theme_index].color}}>45</Text> <Button style={{backgroundColor:this.state.themes[this.state.theme_index].consoleColor}} color={this.state.themes[this.state.theme_index].color} plain type="primary">A+</Button>
+              </View>
+            </View>
+            <View className="chapter">
+              <View style={{color:this.state.themes[this.state.theme_index].color}}>背景</View>
+              <View className="background">
+                {
+                  this.state.themes.map((item, key)=>{
+                    return <View key={key} onClick={this.setThemes.bind(this, key)} className={this.state.theme_index==key?"color active":"color"} style={{borderColor:this.state.theme_index==key?item.color:'transparent',backgroundColor:item.backgroundColor}} ></View>
+                  })
+                }
+              </View>
+            </View>
+          </View>
+        </View>
+        <Sticky>
+          <View className="title" style={{backgroundColor:this.state.themes[this.state.theme_index].backgroundColor}}>{this.state.title}</View>
         </Sticky>
         <View className="content">
-        {
-          this.state.content.map((text,key)=>{
-            return <View className="text" key={key}>{text}</View>
-          })
-        }
+          {
+            this.state.content.map((text, key) => {
+              return <View className="text" key={key}>{text}</View>
+            })
+          }
         </View>
       </View>
     );
